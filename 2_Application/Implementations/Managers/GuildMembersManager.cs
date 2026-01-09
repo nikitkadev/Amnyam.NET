@@ -239,6 +239,8 @@ public class GuildMembersManager(
 
         try
         {
+            await Task.Delay(1000);
+
             await messagesManager.SendWelcomeMessageAsync(guildMember.DiscordId);
 
             return BaseResult.Success(
