@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MlkAdmin._1_Domain.Entities;
+using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MlkAdmin._3_Infrastructure.DataBase.EF;
 
@@ -18,6 +20,7 @@ public class MlkAdminDbContext(DbContextOptions<MlkAdminDbContext> options) : Db
         GuildTextChannelModelCreating(modelBuilder);
         GuildVoiceChannelModelCreating(modelBuilder);
         GuildVoiceSessionModelCreating(modelBuilder);
+        GuildMemberMetricsModelCreating(modelBuilder);
     }
 
     private static void GuildMemberModelCreating(ModelBuilder builder)
@@ -181,5 +184,51 @@ public class MlkAdminDbContext(DbContextOptions<MlkAdminDbContext> options) : Db
             .Property(prop => prop.TotalSeconds)
             .HasColumnName("time_in_seconds")
             .IsRequired(true);
+    }
+    private static void GuildMemberMetricsModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<GuildMemberMetrics>()
+            .ToTable("guilb_member_metrics")
+            .HasKey(key => key.MemberDiscordId);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.MessageSentCount)
+            .HasColumnName("messages_sent_count")
+            .IsRequired(true);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.ReactionAddedCount)
+            .HasColumnName("reaction_added_count")
+            .IsRequired(true);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.CommandSentCount)
+            .HasColumnName("command_sent_count")
+            .IsRequired(true);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.EmotesSentCount)
+            .HasColumnName("emotes_sent_count")
+            .IsRequired(true);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.VoiceChannelsTimeSpent)
+            .HasColumnName("vchannels_time_spent")
+            .IsRequired(true);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.GifsSentCount)
+            .HasColumnName("gifs_sent_count")
+            .IsRequired(true);
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.FirstMessage)
+            .HasColumnName("first_message_date")
+            .IsRequired();
+
+        builder.Entity<GuildMemberMetrics>()
+            .Property(prop => prop.LastMessage)
+            .HasColumnName("last_message_date")
+            .IsRequired();
     }
 }
