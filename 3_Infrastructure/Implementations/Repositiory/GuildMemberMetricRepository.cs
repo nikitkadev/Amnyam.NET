@@ -26,7 +26,6 @@ public class GuildMemberMetricRepository(
         await dbContext.SaveChangesAsync();
     }
 
-
     public async Task IncrementMessageSentCountAsync(ulong guildMemberDiscordId, int increment = 1)
     {
         await ChangeDbPropertyAsync(guildMemberDiscordId, member => member.MessageSentCount += increment);
@@ -51,7 +50,6 @@ public class GuildMemberMetricRepository(
     {
         await ChangeDbPropertyAsync(guildMemberDiscordId, member => member.PngPicturesSentCount += increment);
     }
-
     public async Task UpdateLastMessageDateAsync(ulong guildMemberDiscordId)
     {
         await ChangeDbPropertyAsync(guildMemberDiscordId, member => member.LastMessage = DateTimeOffset.UtcNow);
