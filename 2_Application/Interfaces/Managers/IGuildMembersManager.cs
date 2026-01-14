@@ -5,8 +5,8 @@ namespace MlkAdmin._2_Application.Interfaces.Managers;
 
 public interface IGuildMembersManager
 {
-    Task<BaseResult> AuthorizeGuildMemberAsync(ulong memberId, string guildMemberMention);
-    Task<BaseResult> DeauthorizeGuildMemberAsync(ulong memberDiscordId, string globalName);
-    Task<BaseResult> UpdateGuildMemberColorRoleAsync(ulong guildMemberId, string guildRoleKey);
-    Task<BaseResult> WelcomeNewMemberAsync(GuildMember guildMemberId);
+    Task<BaseResult> AuthorizeGuildMemberAsync(ulong guildMemberDiscordId, string guildMemberMention);
+    Task<BaseResult> DeauthorizeGuildMemberAsync(ulong guildMemberDiscordId, string guildMemberGlobalName);
+    Task<BaseResult> UpdateGuildMemberColorRoleAsync(ulong guildMemberDiscordId, string guildRoleKey);
+    Task<BaseResult> WelcomeNewMemberAsync(GuildMember guildMemberEntity);
 }
