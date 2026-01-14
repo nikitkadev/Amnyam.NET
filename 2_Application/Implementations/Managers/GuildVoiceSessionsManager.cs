@@ -11,7 +11,7 @@ namespace MlkAdmin._2_Application.Implementations.Managers;
 
 public class GuildVoiceSessionsManager(
     ILogger<GuildVoiceSessionsManager> logger,
-    IVoiceSessionCacheService voiceSessionCache,
+    IGuildVoiceSessionCacheService voiceSessionCache,
     IGuildVoiceSessionRepository sessionRepository) : IGuildVoiceSessionsManager
 {
     private async Task SaveVoiceSessionAsync(ulong guildMemberDiscordId, ulong sessionChannelDiscordId, string sessionChannelName, DateTimeOffset? startDate)

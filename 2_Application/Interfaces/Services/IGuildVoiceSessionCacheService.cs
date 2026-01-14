@@ -1,6 +1,6 @@
 ﻿namespace MlkAdmin._2_Application.Interfaces.Services;
 
-public interface IVoiceSessionCacheService
+public interface IGuildVoiceSessionCacheService
 {
     void SetVoiceSessionStart(ulong guildMemberDiscordId);
     DateTimeOffset? GetVoiceSessionStartByMemberDiscordId(ulong guildMemberDiscordId);

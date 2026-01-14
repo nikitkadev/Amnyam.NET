@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 
 namespace MlkAdmin._3_Infrastructure.Cache
 {
-    public class VoiceSessionCache : IVoiceSessionCacheService
+    public class GuildVoiceSessionCacheService : IGuildVoiceSessionCacheService
     {
         private readonly ConcurrentDictionary<ulong, DateTimeOffset> _sessions = [];
 
