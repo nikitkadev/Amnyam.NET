@@ -1,10 +1,5 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using MlkAdmin._1_Domain.Entities;
-using MlkAdmin._1_Domain.Interfaces;
 using MlkAdmin._2_Application.Interfaces.Managers;
-using MlkAdmin._2_Application.Interfaces.Services;
 
 namespace MlkAdmin._2_Application.Events.UserVoiceStateUpdated;
 
