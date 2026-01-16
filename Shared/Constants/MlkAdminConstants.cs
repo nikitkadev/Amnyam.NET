@@ -33,7 +33,7 @@ public static class MlkAdminConstants
     #region COMMANDS_NAME
 
     public const string SET_VOICEROOM_COMMAND_NAME = "set-voiceroom";
-    public const string GUILD_MEMBER_STAT_COMMAND_NAME = "analyze";
+    public const string GUILD_MEMBER_ANALYSIS_COMMAND_NAME = "analyze";
     public const string TESTING_COMMAND_NAME = "testing-dev";
 
     #endregion
