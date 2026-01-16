@@ -14,7 +14,7 @@ public static class MlkAdminConstants
     #endregion
 
     #region BUTTONS_CUSTOM_ID
-
+    
     public const string BUTTONS_AUTHORIZATION_CUSTOM_ID = "BUTTON_AUTHORIZATION";
     public const string BUTTONS_RULES_CUSTOM_ID = "BUTTON_RULES";
     public const string BUTTONS_COLORS_CUSTOM_ID = "BUTTON_COLORS";
