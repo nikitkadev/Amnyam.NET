@@ -1,8 +1,6 @@
-﻿using Discord.WebSocket;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Amnyam._2_Application.Commands.AnalyzeGuildMember;
 using Amnyam._2_Application.Commands.SetupGuildVoiceRoom;
 using Amnyam._2_Application.Commands.Test;
 using Amnyam._2_Application.Interfaces.Managers;
@@ -113,6 +111,13 @@ public class SlashCommandExecutedHandler(
 
                 try
                 {
+                    if(command.User.Id != providersHub.GuildConfigProvidersHub.GuildConfig.Founder.DiscordId)
+                    {
+                        await messagesManager.SendDefaultResponseAsync(
+                            command,
+                            "Команда для разработчика..");
+                    }
+
                     var testResponse = await mediator.Send(
                         new TestCommand()
                         {
