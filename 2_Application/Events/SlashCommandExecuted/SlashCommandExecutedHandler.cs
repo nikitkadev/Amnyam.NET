@@ -8,6 +8,7 @@ using Amnyam._2_Application.Commands.Test;
 using Amnyam._2_Application.Interfaces.Managers;
 using Amnyam.Shared.Constants;
 using Amnyam.Shared.JsonProviders;
+using Amnyam.Shared.Extensions;
 
 namespace Amnyam._2_Application.Events.SlashCommandExecuted;
 
@@ -26,7 +27,7 @@ public class SlashCommandExecutedHandler(
         if (command.Channel.Id != providersHub.GuildConfigProvidersHub.Channels.TextChannels.BotCommandsText.DiscordId)
         {
             await messagesManager.SendDefaultResponseAsync(
-                notification.SocketSlashCommand, 
+                notification.SocketSlashCommand,
                 $"Команды бота можно вызывать только в канале {providersHub.GuildConfigProvidersHub.Channels.TextChannels.BotCommandsText.Https}");
 
             return;
@@ -38,15 +39,17 @@ public class SlashCommandExecutedHandler(
 
                 try
                 {
-                    var voiceRoomName = command.Data.Options
-                        .FirstOrDefault(
-                            x => x.Name.Equals("name", StringComparison.Ordinal)).Value.ToString() ?? string.Empty;
+                    var options = command.Data.Options;
 
                     var updateVoiceRoomNameResult = await mediator.Send(
                         new SetupGuildVoiceRoomCommand()
                         {
                             GuildMemberDiscordId = command.User.Id,
-                            GuildVoiceRoomName = voiceRoomName,
+                            RoomName = options.GetOption<string?>("voice_name"),
+                            MembersLimit = options.GetOption<int?>("members_limit"),
+                            Region = options.GetOption<string?>("region"),
+                            IsNSFW = options.GetOption<bool?>("is_nsfw"),
+                            SlowModeLimit = options.GetOption<int?>("slow_mode_limit")
                         },
                         token
                     );
