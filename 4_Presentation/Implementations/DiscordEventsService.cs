@@ -1,8 +1,10 @@
-﻿using Discord;
-using MediatR;
+﻿using MediatR;
+
+using Discord;
 using Discord.WebSocket;
+
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
+
 using Amnyam._2_Application.Events.UserJoined;
 using Amnyam._2_Application.Events.UserLeft;
 using Amnyam._2_Application.Events.ModalSubmitted;
@@ -16,7 +18,6 @@ using Amnyam._2_Application.Events.ReactionAdded;
 using Amnyam._2_Application.Events.UserUpdated;
 using Amnyam._2_Application.Events.SlashCommandExecuted;
 using Amnyam._3_Infrastructure.Interfaces;
-using Amnyam.Shared.Results;
 using Amnyam._4_Presentation.Discord;
 
 namespace Amnyam.Presentation.DiscordListeners;

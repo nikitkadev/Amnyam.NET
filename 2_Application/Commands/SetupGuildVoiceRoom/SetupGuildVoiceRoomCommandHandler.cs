@@ -17,6 +17,12 @@ public class SetupGuildVoiceRoomCommandHandler(
     {
         try
         {
+            if (request.MembersLimit < 0 || request.MembersLimit > 100)
+                request.MembersLimit = 0;
+
+            if (request.RoomName.Length > 15)
+                request.RoomName = request.RoomName[..14];
+
             await settingsRepository.UpsertRoomSettingsAsync(
                 new _1_Domain.Entities.RoomSettings()
                 {
@@ -33,7 +39,7 @@ public class SetupGuildVoiceRoomCommandHandler(
                 request.GuildMemberDiscordId);
 
             return BaseResult.Success(
-                $"Успешная настройка для личной комнаты!");
+                $"Параметры создаваемой комнаты успешно настроены!");
         }
         catch (DbUpdateException ex)
         {
