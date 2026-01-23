@@ -30,8 +30,6 @@ public class SetupGuildVoiceRoomCommandHandler(
                     VoiceRoomName = request.RoomName,
                     MembersLimit = request.MembersLimit,
                     Region = request.Region,
-                    IsNSFW = request.IsNSFW,
-                    SlowModeLimit = request.SlowModeLimit
                 }, token);
 
             logger.LogInformation(

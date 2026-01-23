@@ -9,6 +9,4 @@ public class SetupGuildVoiceRoomCommand : IRequest<BaseResult>
     public string? RoomName { get; set; }
     public int? MembersLimit { get; set; }
     public string? Region { get; set; }
-    public bool? IsNSFW { get; set; }
-    public int? SlowModeLimit { get; set; }
 }

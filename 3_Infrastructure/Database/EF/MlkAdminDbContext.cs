@@ -252,15 +252,5 @@ public class MlkAdminDbContext(DbContextOptions<MlkAdminDbContext> options) : Db
             .Property(prop => prop.Region)
             .HasColumnName("region")
             .IsRequired(false);
-
-        builder.Entity<RoomSettings>()
-            .Property(prop => prop.IsNSFW)
-            .HasColumnName("is_nsfw")
-            .IsRequired(false);
-
-        builder.Entity<RoomSettings>()
-            .Property(prop => prop.SlowModeLimit)
-            .HasColumnName("slowmode_limit")
-            .IsRequired(false);
     }
 }

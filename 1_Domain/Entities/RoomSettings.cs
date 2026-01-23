@@ -6,6 +6,4 @@ public class RoomSettings
     public string? VoiceRoomName { get; set; }
     public int? MembersLimit { get; set; }
     public string? Region { get; set; }
-    public bool? IsNSFW { get; set; }
-    public int? SlowModeLimit { get; set; }
 }

@@ -1,6 +1,7 @@
 ﻿using Amnyam._1_Domain.Entities;
 using Amnyam._1_Domain.Interfaces;
 using Amnyam._3_Infrastructure.DataBase.EF;
+using Microsoft.EntityFrameworkCore;
 
 namespace Amnyam._3_Infrastructure.Implementations.Repositiory;
 
@@ -22,12 +23,6 @@ public class RoomSettingsRepository(MlkAdminDbContext dbContext) : IRoomSettings
             if(roomSettings.Region is not null)
                 settings.Region = roomSettings.Region;
 
-            if(roomSettings.IsNSFW is not null)
-                settings.IsNSFW = roomSettings.IsNSFW;
-
-            if (roomSettings.SlowModeLimit is not null)
-                settings.SlowModeLimit = roomSettings.SlowModeLimit;
-
             return;
         }
 
@@ -37,8 +32,23 @@ public class RoomSettingsRepository(MlkAdminDbContext dbContext) : IRoomSettings
 
     public async Task<RoomSettings> GetRoomSettingsByGuildMemberDiscordIdAsync(ulong guildMemberDiscordId, CancellationToken token = default)
     {
-        var settings = await dbContext.RoomSettings.FindAsync(guildMemberDiscordId);
+        var settings = await dbContext.RoomSettings.FindAsync([guildMemberDiscordId], cancellationToken: token);
 
         return settings ?? new RoomSettings() { GuildMemberDiscordId = guildMemberDiscordId};
+    }
+
+    public async Task RemoveRoomSettingsByGuildMemberDiscordIdAsync(ulong guildMemberDiscordId, CancellationToken token = default)
+    {
+        var settings = await dbContext.RoomSettings
+            .FirstOrDefaultAsync(rs => rs.GuildMemberDiscordId == guildMemberDiscordId, cancellationToken: token);
+
+        if (settings is null)
+        {
+            throw new ArgumentNullException($"Настроек комнаты для участника с DiscordId {guildMemberDiscordId} не найдены");
+        }
+
+        dbContext.RoomSettings.Remove(settings);
+
+        await dbContext.SaveChangesAsync(token);
     }
 }
