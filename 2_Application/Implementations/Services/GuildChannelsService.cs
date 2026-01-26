@@ -45,8 +45,6 @@ public class GuildChannelsService(
             {
                 properties.CategoryId = providersHub.GuildConfigProvidersHub.Categories.Lobby.DiscordId;
                 properties.UserLimit = leaderVoiceRoonSettings.MembersLimit ?? 0;
-                properties.DefaultSlowModeInterval = leaderVoiceRoonSettings.SlowModeLimit ?? 0;
-                properties.IsNsfw = leaderVoiceRoonSettings.IsNSFW ?? false;
                 properties.RTCRegion = leaderVoiceRoonSettings.Region ?? string.Empty;
                 properties.PermissionOverwrites = new Overwrite[]
                 {

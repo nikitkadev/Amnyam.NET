@@ -46,8 +46,6 @@ public class SlashCommandExecutedHandler(
                             RoomName = options.GetOption<string?>("voice_name"),
                             MembersLimit = options.GetOption<int?>("members_limit"),
                             Region = options.GetOption<string?>("region"),
-                            IsNSFW = options.GetOption<bool?>("is_nsfw"),
-                            SlowModeLimit = options.GetOption<int?>("slow_mode_limit")
                         },
                         token
                     );

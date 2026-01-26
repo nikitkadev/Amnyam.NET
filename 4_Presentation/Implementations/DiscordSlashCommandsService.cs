@@ -76,7 +76,6 @@ public class DiscordSlashCommandsService(
             .AddOption("member", ApplicationCommandOptionType.User, "Участника сервера", isRequired: true)
             .Build();
     }
-
     private static SlashCommandProperties? AddTestCommand()
     {
         return new SlashCommandBuilder()
